@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>الإعدادات - مكتبة الشرق</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #000;
+      --text-color: #ffc107;
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    body.light {
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --card-bg: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: 0.3s;
+    }
+
+    header {
+      background-color: #4a2c84;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    main {
+      padding: 30px 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .setting-group {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px #0003;
+    }
+
+    label {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    select, button, .toggle {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+      margin-top: 5px;
+      background-color: #333;
+      color: #ffc107;
+    }
+
+    .light select, .light button, .light .toggle {
+      background-color: #ddd;
+      color: #222;
+    }
+
+    .toggle {
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #4a2c84;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      color: white;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 30px auto 10px;
+      padding: 12px 30px;
+      background-color: #ffc107;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 25px;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="page-title">⚙️ الإعدادات</header>
+
+  <main>
+    <h1 id="main-heading">إعدادات الموقع</h1>
+
+    <div class="setting-group">
+      <label id="lang-label" for="lang-select">🌍 اختيار اللغة:</label>
+      <select id="lang-select" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label id="mode-label">🌓 الوضع:</label>
+      <button class="toggle" onclick="toggleTheme()" id="mode-btn">تبديل بين الليل / النهار</button>
+    </div>
+
+    <div class="setting-group">
+      <label id="coming-label">🔧 إعدادات أخرى (قريبًا):</label>
+      <p id="coming-desc">سيتم إضافة إعدادات إضافية مثل تغيير حجم الخط، الألوان، الخطوط المخصصة، وغير ذلك.</p>
+    </div>
+
+    <a href="index.html" class="back-btn" id="back-btn">⬅ الرجوع إلى الرئيسية</a>
+  </main>
+
+  <footer id="footer-text">
+    &copy; 2025 مكتبة الشرق - جميع الحقوق محفوظة.
+  </footer>
+
+  <script>
+    const texts = {
+      ar: {
+        title: "⚙️ الإعدادات",
+        heading: "إعدادات الموقع",
+        langLabel: "🌍 اختيار اللغة:",
+        modeLabel: "🌓 الوضع:",
+        modeBtn: "تبديل بين الليل / النهار",
+        comingLabel: "🔧 إعدادات أخرى (قريبًا):",
+        comingDesc: "سيتم إضافة إعدادات إضافية مثل تغيير حجم الخط، الألوان، الخطوط المخصصة، وغير ذلك.",
+        backBtn: "⬅ الرجوع إلى الرئيسية",
+        footer: "&copy; 2025 مكتبة الشرق - جميع الحقوق محفوظة."
+      },
+      en: {
+        title: "⚙️ Settings",
+        heading: "Site Settings",
+        langLabel: "🌍 Select Language:",
+        modeLabel: "🌓 Mode:",
+        modeBtn: "Toggle Night / Day Mode",
+        comingLabel: "🔧 Other Settings (Coming Soon):",
+        comingDesc: "More settings like font size, color themes, and custom fonts will be added soon.",
+        backBtn: "⬅ Back to Home",
+        footer: "&copy; 2025 Al Sharq Library - All rights reserved."
+      }
+    };
+
+    function applyLanguage(lang) {
+      document.getElementById("page-title").innerHTML = texts[lang].title;
+      document.getElementById("main-heading").innerText = texts[lang].heading;
+      document.getElementById("lang-label").innerText = texts[lang].langLabel;
+      document.getElementById("mode-label").innerText = texts[lang].modeLabel;
+      document.getElementById("mode-btn").innerText = texts[lang].modeBtn;
+      document.getElementById("coming-label").innerText = texts[lang].comingLabel;
+      document.getElementById("coming-desc").innerText = texts[lang].comingDesc;
+      document.getElementById("back-btn").innerText = texts[lang].backBtn;
+      document.getElementById("footer-text").innerHTML = texts[lang].footer;
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    }
+
+    function changeLanguage(lang) {
+      localStorage.setItem("site-lang", lang);
+      applyLanguage(lang);
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+
+    // Load saved language
+    const savedLang = localStorage.getItem("site-lang") || "ar";
+    document.getElementById("lang-select").value = savedLang;
+    applyLanguage(savedLang);
+  </script>
+
+</body>
+</html>
+

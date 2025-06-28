@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>نشر كتابك - مكتبة الشرق</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #000000, #1b1b1b, #2a2a2a);
+      color: #ffc107;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .container {
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ffb80040;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: #ffcc00;
+    }
+    .desc {
+      font-size: 18px;
+      color: #ddd;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .publish-btn,
+    .back-btn {
+      background-color: #ffc107;
+      color: #000;
+      padding: 15px 35px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 10px 0;
+      display: inline-block;
+    }
+    .publish-btn:hover,
+    .back-btn:hover {
+      background-color: #e0a800;
+    }
+    .message {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: rgba(255, 193, 7, 0.08);
+      color: #ffc107;
+      font-size: 17px;
+      border: 1px solid #ffc10740;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>نشر كتابك</h1>
+    <p class="desc">
+      شارك أفكارك ومؤلفاتك مع مجتمع مكتبة الشرق<br>
+      يمكنك إضافة كتاب يتضمن مميزات، نصائح، أو شروحات لمساعدة الآخرين.
+    </p>
+    <button class="publish-btn" onclick="handlePublishClick()">نشر كتابك</button>
+    <br />
+    <a href="index.html" class="back-btn">⬅ الرجوع إلى الرئيسية</a>
+
+    <div class="message" id="loginMessage">يرجى تسجيل الدخول أولاً قبل نشر الكتاب.</div>
+  </div>
+
+  <script>
+    const isLoggedIn = false; // غيّرها إلى true إذا كان المستخدم مسجل دخول
+
+    function handlePublishClick() {
+      if (!isLoggedIn) {
+        document.getElementById("loginMessage").style.display = "block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        alert("تم فتح صفحة نشر الكتاب ✅");
+        // يمكنك هنا توجيهه إلى نموذج أو صفحة نشر كتاب حقيقية
+      }
+    }
+  </script>
+
+</body>
+</html>
